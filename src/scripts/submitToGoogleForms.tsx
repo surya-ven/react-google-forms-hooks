@@ -4,7 +4,7 @@ import {
   OTHER_OPTION,
   OTHER_OPTION_RESPONSE
 } from '../hooks/utils/useCustomOptionField'
-import React, { useRef, useState } from 'react'
+// import React, { useRef, useState } from 'react'
 
 export const GOOGLE_FORMS_URL = 'https://docs.google.com/forms/d'
 
@@ -111,52 +111,5 @@ export const submitToGoogleForms = async (
   // const FormIFrame = () => {
   //   return <iframe id='my-response-iframe' name='my-response-iframe'></iframe>
   // }
-
-  const RunFormSubmission = () => {
-    const formRef = useRef(null)
-    const iFrameRef = useRef(null)
-    const [submitted, setSubmitted] = useState(false)
-    // useEffect(() => {
-    //   if (formRef && formRef?.current) {
-    //     ;(formRef.current as any).target = 'my-response-iframe'
-    //     ;(formRef.current as any).requestSubmit()
-    //   }
-    // }, [formRef])
-
-    const script = () => {
-      if (!submitted && formRef && formRef?.current) {
-        ;(formRef.current as any).target = 'my-response-iframe'
-        ;(formRef.current as any).requestSubmit()
-        setSubmitted(true)
-      }
-      if (submitted && iFrameRef && iFrameRef?.current) {
-        ;(iFrameRef.current as any).onload = function () {
-          console.log('Successfully submitted')
-        }
-      }
-    }
-
-    return (
-      <div style={{ visibility: 'hidden' }}>
-        <form
-          id='my-form'
-          ref={formRef}
-          target='my-response-iframe'
-          action={`${fetchContent.url}`}
-          method='get'
-          style={{ visibility: 'hidden' }}
-        >
-          <input style={{ visibility: 'hidden' }} type='submit'></input>
-        </form>
-        <iframe
-          style={{ visibility: 'hidden' }}
-          id='my-response-iframe'
-          ref={iFrameRef}
-          name='my-response-iframe'
-        ></iframe>
-        {script()}
-      </div>
-    )
-  }
-  return RunFormSubmission
+  return fetchContent
 }
