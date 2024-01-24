@@ -35,25 +35,32 @@ export const submitToGoogleForms = async (
     }
   })
 
-  const fetchedResult = await fetch(
-    `${GOOGLE_FORMS_URL}/${
-      form.action
-    }/formResponse?submit=Submit&${urlParams.toString()}`,
-    {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+  let fetchedResult = null
+
+  try {
+    fetchedResult = await fetch(
+      `${GOOGLE_FORMS_URL}/${
+        form.action
+      }/formResponse?submit=Submit&${urlParams.toString()}`,
+      {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
       }
-    }
-  )
+    )
+  } catch (err) {
+    console.log('error caught', err)
+  }
 
   console.log(`fetchedResult`, fetchedResult)
 
   const wasSuccessful =
-    fetchedResult.ok &&
-    fetchedResult.status < 300 &&
-    fetchedResult.status >= 200
+    (fetchedResult?.ok &&
+      fetchedResult.status < 300 &&
+      fetchedResult.status >= 200) ??
+    false
 
   return wasSuccessful
 }
