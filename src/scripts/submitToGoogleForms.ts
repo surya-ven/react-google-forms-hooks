@@ -40,7 +40,7 @@ export const submitToGoogleForms = async (
       form.action
     }/formResponse?submit=Submit&${urlParams.toString()}`,
     {
-      method: 'GET',
+      method: 'POST',
       mode: 'no-cors',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -48,7 +48,7 @@ export const submitToGoogleForms = async (
     }
   )
 
-  console.log("fetchedResult", fetchedResult);
+  console.log(`fetchedResult`, fetchedResult)
 
   const wasSuccessful =
     fetchedResult.ok &&
