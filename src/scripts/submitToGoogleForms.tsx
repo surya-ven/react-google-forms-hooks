@@ -137,7 +137,7 @@ export const submitToGoogleForms = async (
     }
 
     return (
-      <div>
+      <div style={{ visibility: 'hidden' }}>
         <form
           id='my-form'
           ref={formRef}
@@ -158,11 +158,5 @@ export const submitToGoogleForms = async (
       </div>
     )
   }
-  try {
-    runFormSubmission()
-    return true
-  } catch (err) {
-    console.log(err)
-    return false
-  }
+  return runFormSubmission
 }
