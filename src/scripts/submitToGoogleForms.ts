@@ -48,6 +48,8 @@ export const submitToGoogleForms = async (
     }
   )
 
+  console.log("fetchedResult", fetchedResult);
+
   const wasSuccessful =
     fetchedResult.ok &&
     fetchedResult.status < 300 &&
