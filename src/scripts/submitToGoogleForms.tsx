@@ -112,7 +112,7 @@ export const submitToGoogleForms = async (
   //   return <iframe id='my-response-iframe' name='my-response-iframe'></iframe>
   // }
 
-  const runFormSubmission = () => {
+  const RunFormSubmission = () => {
     const formRef = useRef(null)
     const iFrameRef = useRef(null)
     const [submitted, setSubmitted] = useState(false)
@@ -158,5 +158,5 @@ export const submitToGoogleForms = async (
       </div>
     )
   }
-  return runFormSubmission
+  return RunFormSubmission
 }
